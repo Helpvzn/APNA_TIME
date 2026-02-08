@@ -10,9 +10,7 @@ const schema = z.object({
     email: z.string().email("Invalid email address"),
     password: z.string().min(6, "Password must be at least 6 characters"),
     businessName: z.string().min(2, "Business name must be at least 2 characters"),
-    businessType: z.enum(['doctor', 'hr', 'lawyer', 'consultant', 'service'], {
-        required_error: "Please select a business type",
-    }),
+    businessType: z.enum(['doctor', 'hr', 'lawyer', 'consultant', 'service']),
 })
 
 export async function signup(prevState: any, formData: FormData) {
