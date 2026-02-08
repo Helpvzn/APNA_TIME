@@ -27,7 +27,7 @@ export async function signup(prevState: any, formData: FormData) {
     // Validate
     const result = schema.safeParse(data)
     if (!result.success) {
-        const errorMessage = result.error.errors?.[0]?.message || result.error.message || "Invalid input data";
+        const errorMessage = result.error.issues[0]?.message || "Invalid input data";
         return { error: errorMessage }
     }
 
