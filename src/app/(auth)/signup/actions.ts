@@ -28,7 +28,7 @@ export async function signup(prevState: any, formData: FormData) {
     const result = schema.safeParse(data)
     if (!result.success) {
         const errorMessage = result.error.issues[0]?.message || "Invalid input data";
-        return { error: errorMessage }
+        return { success: false, error: errorMessage }
     }
 
     const { error } = await supabase.auth.signUp({
