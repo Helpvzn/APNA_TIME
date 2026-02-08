@@ -28,7 +28,7 @@ export async function signup(prevState: any, formData: FormData) {
     const result = schema.safeParse(data)
     if (!result.success) {
         const errorMessage = result.error.issues[0]?.message || "Invalid input data";
-        return { success: false, error: errorMessage }
+        return { success: false, error: errorMessage, message: "" }
     }
 
     const { error } = await supabase.auth.signUp({
@@ -44,9 +44,10 @@ export async function signup(prevState: any, formData: FormData) {
     })
 
     if (error) {
-        return { error: error.message }
+        return { success: false, error: error.message, message: "" }
     }
 
+    // revalidatePath might not be needed for redirect, but keeping it
     revalidatePath('/', 'layout')
-    return { success: true, message: 'Check your email to continue sign in process' }
+    return { success: true, message: 'Check your email to continue sign in process', error: "" }
 }
