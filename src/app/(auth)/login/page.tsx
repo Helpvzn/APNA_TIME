@@ -14,10 +14,10 @@ export default function LoginPage() {
     const [state, formAction, isPending] = useActionState(login, initialState)
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-screen items-center justify-center bg-romantic-darker px-4 py-12 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8">
-                <div>
-                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                <div className="bg-romantic-card p-8 rounded-2xl border border-romantic-pink/20 shadow-xl shadow-romantic-pink/10">
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">
                         Sign in to your account
                     </h2>
                 </div>
@@ -59,7 +59,7 @@ export default function LoginPage() {
                         <div className="w-full border-t border-gray-300" />
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="bg-gray-50 px-2 text-gray-500">Or continue with email</span>
+                        <span className="bg-romantic-card px-2 text-gray-400">Or continue with email</span>
                     </div>
                 </div>
                 <form action={formAction} className="mt-8 space-y-6">
@@ -77,7 +77,7 @@ export default function LoginPage() {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-romantic-pink/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-romantic-pink sm:text-sm sm:leading-6 pl-3"
                                 placeholder="Email address"
                             />
                         </div>
@@ -89,7 +89,7 @@ export default function LoginPage() {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-romantic-pink/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-romantic-pink sm:text-sm sm:leading-6 pl-3"
                                 placeholder="Password"
                             />
                         </div>
@@ -99,14 +99,14 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={isPending}
-                            className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-70"
+                            className="group relative flex w-full justify-center rounded-md bg-romantic-gradient px-3 py-2 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-romantic-pink disabled:opacity-70"
                         >
                             {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                             Sign in
                         </button>
                     </div>
                     <div className="text-sm text-center">
-                        <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link href="/signup" className="font-medium text-romantic-pink hover:text-romantic-pink-light">
                             Don't have an account? Sign up
                         </Link>
                     </div>

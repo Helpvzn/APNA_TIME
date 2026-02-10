@@ -15,13 +15,13 @@ export default function SignupPage() {
     const [state, formAction, isPending] = useActionState(signup, initialState)
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-screen items-center justify-center bg-romantic-darker px-4 py-12 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8">
-                <div>
-                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                <div className="bg-romantic-card p-8 rounded-2xl border border-romantic-pink/20 shadow-xl shadow-romantic-pink/10">
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">
                         Start your SaaS journey
                     </h2>
-                    <p className="mt-2 text-center text-sm text-gray-600">
+                    <p className="mt-2 text-center text-sm text-gray-400">
                         Create your admin account to manage appointments
                     </p>
                 </div>

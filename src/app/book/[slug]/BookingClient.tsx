@@ -61,7 +61,6 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
 
                 // 2. Fetch existing appointments to check conflicts
                 const existingAppts = await getAppointmentsForDate(org.id, date)
-                console.log('DEBUG: Fetched Appointments:', existingAppts)
 
                 // 3. Generate slots
                 const generated: { time: string; isBooked: boolean }[] = []
@@ -188,10 +187,10 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
     return (
         <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50 w-full overflow-x-hidden">
             {/* Sidebar: Org Info - Fixed Width on Desktop */}
-            <div className="lg:w-80 bg-slate-900 text-white p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all">
+            <div className="lg:w-80 bg-romantic-dark text-white p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all">
                 <div>
                     <div className="flex items-center gap-4 mb-8">
-                        <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
+                        <div className="w-12 h-12 bg-romantic-gradient rounded-xl flex items-center justify-center shadow-lg shadow-romantic-pink/20 shrink-0">
                             <CalendarIcon className="w-6 h-6 text-white" />
                         </div>
                         <div className="min-w-0">
@@ -249,10 +248,10 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                         <div className="flex-1 flex flex-col items-center justify-center animate-in zoom-in-50 duration-300">
                             <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                                 <style jsx global>{`
-                                    .rdp { --rdp-cell-size: 50px; --rdp-accent-color: #4f46e5; margin: 0; }
+                                    .rdp { --rdp-cell-size: 50px; --rdp-accent-color: #ff6b9d; margin: 0; }
                                     .rdp-button:hover:not([disabled]):not(.rdp-day_selected) { background-color: #f3f4f6; }
-                                    .rdp-day_selected { font-weight: bold; color: white; background-color: #4f46e5; }
-                                    .rdp-day_selected:hover { background-color: #4338ca; }
+                                    .rdp-day_selected { font-weight: bold; color: white; background: linear-gradient(135deg, #ff6b9d 0%, #8b5cf6 100%); }
+                                    .rdp-day_selected:hover { background: linear-gradient(135deg, #ff85a6 0%, #a78bfa 100%); }
                                     .rdp-caption_label { color: #111827; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; }
                                     .rdp-head_cell { color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding-bottom: 0.5rem; }
                                     .rdp-day { color: #1f2937; font-weight: 500; font-size: 1.1rem; }
@@ -274,7 +273,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                             <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
                                 <button
                                     onClick={() => setStep(1)}
-                                    className="text-sm font-medium text-gray-600 hover:text-indigo-600 flex items-center bg-white border border-gray-300 px-4 py-2 rounded-lg transition-colors shadow-sm hover:shadow"
+                                    className="text-sm font-medium text-gray-600 hover:text-romantic-pink flex items-center bg-white border border-gray-300 px-4 py-2 rounded-lg transition-colors shadow-sm hover:shadow"
                                 >
                                     <ChevronLeft className="w-4 h-4 mr-1" /> Back to Calendar
                                 </button>
@@ -290,7 +289,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                         <span>Booked</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-3 h-3 rounded-sm bg-indigo-600 border border-indigo-600"></div>
+                                        <div className="w-3 h-3 rounded-sm bg-romantic-pink border border-romantic-pink"></div>
                                         <span>Selected</span>
                                     </div>
                                 </div>
@@ -298,7 +297,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
 
                             {isLoadingSlots ? (
                                 <div className="flex flex-col items-center justify-center py-20">
-                                    <Loader2 className="w-12 h-12 animate-spin text-indigo-600 mb-4" />
+                                    <Loader2 className="w-12 h-12 animate-spin text-romantic-pink mb-4" />
                                     <p className="text-gray-500">Loading availability...</p>
                                 </div>
                             ) : availableSlots.length > 0 ? (
@@ -313,17 +312,17 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                                 flex flex-col items-center justify-center gap-1
                                                 ${isBooked
                                                     ? 'bg-red-600 border-red-700 text-white cursor-not-allowed shadow-inner'
-                                                    : 'bg-white border-gray-200 text-gray-700 hover:border-indigo-500 hover:text-indigo-600 hover:shadow-md hover:-translate-y-1'
+                                                    : 'bg-white border-gray-200 text-gray-700 hover:border-romantic-pink hover:text-romantic-pink hover:shadow-md hover:-translate-y-1'
                                                 }
                                                 ${!isBooked && 'active:scale-95'}
-                                                ${selectedSlot === time ? '!border-indigo-600 !bg-indigo-50 !text-indigo-700 ring-4 ring-indigo-500/20 z-10' : ''}
+                                                ${selectedSlot === time ? '!border-romantic-pink !bg-romantic-pink/10 !text-romantic-pink ring-4 ring-romantic-pink/20 z-10' : ''}
                                             `}
                                         >
                                             <span className="text-base tracking-tight">{time}</span>
                                             {isBooked ? (
                                                 <span className="text-[10px] uppercase font-black text-red-100 tracking-wider">SOLD</span>
                                             ) : (
-                                                <span className={`text-[10px] font-medium ${selectedSlot === time ? 'text-indigo-500' : 'text-green-500'}`}>OPEN</span>
+                                                <span className={`text-[10px] font-medium ${selectedSlot === time ? 'text-romantic-pink' : 'text-green-500'}`}>OPEN</span>
                                             )}
                                         </button>
                                     ))}
@@ -419,7 +418,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.01]"
+                                    className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-romantic-gradient hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-romantic-pink transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.01]"
                                 >
                                     {isSubmitting ? (
                                         <>
