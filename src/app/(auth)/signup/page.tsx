@@ -17,7 +17,7 @@ export default function SignupPage() {
     return (
         <div className="flex min-h-screen items-center justify-center bg-wine-darker px-4 py-12 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8">
-                <div className="bg-wine-card p-8 rounded-2xl border border-wine-pink/20 shadow-xl shadow-wine-pink/10">
+                <div className="bg-wine-card p-8 rounded-2xl border border-wine-burgundy/20 shadow-xl shadow-wine-burgundy/10">
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">
                         Start your SaaS journey
                     </h2>
@@ -63,7 +63,7 @@ export default function SignupPage() {
                         <div className="w-full border-t border-gray-300" />
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="bg-gray-50 px-2 text-gray-500">Or continue with email</span>
+                        <span className="bg-wine-card px-2 text-gray-400">Or continue with email</span>
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@ export default function SignupPage() {
                                     name="fullName"
                                     type="text"
                                     required
-                                    className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Full Name"
                                 />
                             </div>
@@ -110,7 +110,7 @@ export default function SignupPage() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Email address"
                                 />
                             </div>
@@ -122,7 +122,7 @@ export default function SignupPage() {
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Password"
                                 />
                             </div>
@@ -133,7 +133,7 @@ export default function SignupPage() {
                                     name="businessName"
                                     type="text"
                                     required
-                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Business Name"
                                 />
                             </div>
@@ -143,7 +143,7 @@ export default function SignupPage() {
                                     id="businessType"
                                     name="businessType"
                                     required
-                                    className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
                                     defaultValue=""
                                 >
                                     <option value="" disabled>Select Business Type</option>
@@ -160,14 +160,14 @@ export default function SignupPage() {
                             <button
                                 type="submit"
                                 disabled={isPending}
-                                className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-70"
+                                className="group relative flex w-full justify-center rounded-md bg-wine-gradient px-3 py-2 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine-burgundy disabled:opacity-70"
                             >
                                 {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                                 Sign up
                             </button>
                         </div>
                         <div className="text-sm text-center">
-                            <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <Link href="/login" className="font-medium text-wine-burgundy hover:text-wine-burgundy-light">
                                 Already have an account? Log in
                             </Link>
                         </div>
