@@ -47,7 +47,12 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
             try {
                 // 1. Get working hours for this day
                 const dayOfWeek = date.getDay()
+                console.log('🔍 Selected date:', date)
+                console.log('🔍 Day of week (JS):', dayOfWeek) // 0=Sunday, 3=Wednesday
+                console.log('🔍 All availability slots:', availabilitySlots)
+
                 const daySlots = availabilitySlots.filter(s => s.day_of_week === dayOfWeek)
+                console.log('🔍 Filtered day slots:', daySlots)
 
                 if (daySlots.length === 0) {
                     setAvailableSlots([])

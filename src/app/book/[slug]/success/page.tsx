@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
 
-export default function BookingSuccessPage({ params }: { params: { slug: string } }) {
+export default async function BookingSuccessPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params
+
     return (
         <div className="flex flex-col items-center justify-center py-16 px-4">
             <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
@@ -11,7 +13,7 @@ export default function BookingSuccessPage({ params }: { params: { slug: string 
             </p>
             <div className="mt-8">
                 <Link
-                    href={`/book/${params.slug}`}
+                    href={`/book/${slug}`}
                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                     Book Another Appointment
