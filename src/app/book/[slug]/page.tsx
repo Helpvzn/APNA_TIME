@@ -20,11 +20,12 @@ export default async function BookingPage({ params }: { params: Promise<{ slug: 
     const businessType = org.business_type as BusinessType
     const config = CATEGORY_CONFIG[businessType]
 
-    const { data: availabilitySlots } = await supabase
+    const { data: availabilitySlots, error: slotsError } = await supabase
         .from('availability_slots')
         .select('*')
         .eq('organization_id', org.id)
         .eq('is_active', true)
+
 
     return (
         <main className="min-h-screen bg-white">
