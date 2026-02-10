@@ -9,27 +9,31 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                // Doctor Romance inspired romantic color palette
-                'romantic': {
-                    'dark': '#1a1625',      // Deep purple-black background
-                    'darker': '#0f0c1f',    // Even darker background
-                    'card': '#2d2438',      // Card background
-                    'pink': {
-                        DEFAULT: '#ff6b9d',   // Primary pink
-                        'light': '#ff9fb8',   // Light pink
-                        'bright': '#ff85a6',  // Bright pink
+                // Doctor Romance inspired RED WINE color palette
+                'wine': {
+                    'dark': '#1a0a0e',      // Deep wine-black background
+                    'darker': '#0d0507',    // Even darker wine background
+                    'card': '#2d1418',      // Wine card background
+                    'red': {
+                        DEFAULT: '#8B0000',   // Deep red (dark red)
+                        'light': '#A52A2A',   // Brown-red (burgundy)
+                        'bright': '#B22222',  // Firebrick red
                     },
-                    'purple': {
-                        DEFAULT: '#8b5cf6',   // Primary purple
-                        'light': '#a78bfa',   // Light purple
-                        'lighter': '#c4b5fd', // Even lighter purple
+                    'burgundy': {
+                        DEFAULT: '#800020',   // True burgundy
+                        'light': '#9F1D35',   // Light burgundy
+                        'lighter': '#C84557', // Even lighter burgundy
+                    },
+                    'maroon': {
+                        DEFAULT: '#722F37',   // Wine maroon
+                        'dark': '#5C1A1B',    // Dark maroon
                     },
                 },
             },
             backgroundImage: {
-                'romantic-gradient': 'linear-gradient(135deg, #ff6b9d 0%, #8b5cf6 100%)',
-                'romantic-gradient-vertical': 'linear-gradient(180deg, #ff6b9d 0%, #8b5cf6 100%)',
-                'romantic-dark-gradient': 'linear-gradient(135deg, #1a1625 0%, #2d2438 100%)',
+                'wine-gradient': 'linear-gradient(135deg, #800020 0%, #8B0000 100%)',
+                'wine-gradient-vertical': 'linear-gradient(180deg, #800020 0%, #8B0000 100%)',
+                'wine-dark-gradient': 'linear-gradient(135deg, #1a0a0e 0%, #2d1418 100%)',
             },
             animation: {
                 'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
