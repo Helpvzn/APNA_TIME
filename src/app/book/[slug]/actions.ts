@@ -114,8 +114,8 @@ export async function bookAppointment(formData: FormData) {
 
     const { error } = await supabase.from('appointments').insert({
         organization_id: organizationId,
-        customer_name: customerName,
-        customer_email: customerEmail,
+        client_name: customerName,
+        client_email: customerEmail,
         start_time: startTime,
         end_time: endTime,
         metadata,
