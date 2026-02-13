@@ -24,7 +24,7 @@ export default async function BookingPage({ params }: { params: Promise<{ slug: 
         .from('availability_slots')
         .select('*')
         .eq('organization_id', org.id)
-        .eq('is_active', true)
+        .eq('is_available', true)
 
 
     return (

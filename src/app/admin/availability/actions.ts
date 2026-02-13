@@ -20,7 +20,7 @@ export async function addSlot(formData: FormData) {
         day_of_week: dayOfWeek,
         start_time: startTime,
         end_time: endTime,
-        is_active: true
+        is_available: true
     })
 
     revalidatePath('/admin/availability')
