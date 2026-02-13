@@ -1,10 +1,12 @@
 'use server'
 
-import { createClient } from '@/utils/supabase/server'
+import { createAdminClient } from '@/utils/supabase/server'
 import { startOfDay, endOfDay, subDays, addDays } from 'date-fns'
 
 export async function getAppointmentsForDate(organizationId: string, date: Date) {
-    const supabase = await createClient()
+    // USE ADMIN CLIENT (Service Role) TO BYPASS RLS
+    // This is safe because we ONLY return start/end times, not personal data.
+    const supabase = await createAdminClient()
 
     // Widen the search range to handle timezone differences (UTC vs Local)
     // +/- 1 day buffer ensures we capture all appointments for the user's local "day"
