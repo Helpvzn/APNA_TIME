@@ -14,7 +14,7 @@ export async function GET(request: Request) {
 
         if (authError || !user) {
             console.error('Auth error:', authError)
-            return NextResponse.redirect(`${origin}/login?error=auth_failed`)
+            return NextResponse.redirect(new URL('/login?error=auth_failed', request.url))
         }
 
         // Check if user entry exists in our users table
