@@ -11,29 +11,28 @@ const config: Config = {
             colors: {
                 // Doctor Romance inspired RED WINE color palette
                 'wine': {
-                    'dark': '#1a0a0e',      // Deep wine-black background
-                    'darker': '#0d0507',    // Even darker wine background
-                    'card': '#2d1418',      // Wine card background
+                    'dark': '#20050a',      // Deep maroon background (from image)
+                    'darker': '#150305',    // Darker shade for contrast
+                    'card': '#2d080f',      // Slightly lighter maroon for cards
+                    'gold': {
+                        DEFAULT: '#FFD700',   // Gold accent (from image text)
+                        'dim': '#C5A000',     // Dim gold
+                    },
                     'red': {
-                        DEFAULT: '#8B0000',   // Deep red (dark red)
-                        'light': '#A52A2A',   // Brown-red (burgundy)
-                        'bright': '#B22222',  // Firebrick red
+                        DEFAULT: '#8B0000',   // Deep red
+                        'light': '#A52A2A',   // Brown-red
                     },
                     'burgundy': {
                         DEFAULT: '#800020',   // True burgundy
                         'light': '#9F1D35',   // Light burgundy
-                        'lighter': '#C84557', // Even lighter burgundy
-                    },
-                    'maroon': {
-                        DEFAULT: '#722F37',   // Wine maroon
-                        'dark': '#5C1A1B',    // Dark maroon
                     },
                 },
             },
             backgroundImage: {
-                'wine-gradient': 'linear-gradient(135deg, #800020 0%, #8B0000 100%)',
-                'wine-gradient-vertical': 'linear-gradient(180deg, #800020 0%, #8B0000 100%)',
-                'wine-dark-gradient': 'linear-gradient(135deg, #1a0a0e 0%, #2d1418 100%)',
+                'wine-gradient': 'linear-gradient(135deg, #800020 0%, #20050a 100%)', // Burgundy to Dark based on image
+                'wine-gradient-vertical': 'linear-gradient(180deg, #800020 0%, #20050a 100%)',
+                'wine-dark-gradient': 'linear-gradient(135deg, #20050a 0%, #2d080f 100%)', // Dark to Card
+                'gold-gradient': 'linear-gradient(135deg, #FFD700 0%, #C5A000 100%)', // Gold gradient for buttons
             },
             animation: {
                 'heartbeat': 'heartbeat 1.5s ease-in-out infinite',

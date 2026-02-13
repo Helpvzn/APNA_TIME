@@ -185,12 +185,12 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
     }
 
     return (
-        <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50 w-full overflow-x-hidden">
+        <div className="flex flex-col lg:flex-row min-h-screen bg-[#20050a] w-full overflow-x-hidden">
             {/* Sidebar: Org Info - Fixed Width on Desktop */}
             <div className="lg:w-80 bg-romantic-dark text-white p-6 lg:p-8 flex flex-col justify-between shrink-0 transition-all">
                 <div>
                     <div className="flex items-center gap-4 mb-8">
-                        <div className="w-12 h-12 bg-romantic-gradient rounded-xl flex items-center justify-center shadow-lg shadow-romantic-pink/20 shrink-0">
+                        <div className="w-12 h-12 bg-wine-gradient rounded-xl flex items-center justify-center shadow-lg shadow-wine-gold/20 shrink-0">
                             <CalendarIcon className="w-6 h-6 text-white" />
                         </div>
                         <div className="min-w-0">
@@ -224,37 +224,38 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
             </div>
 
             {/* Main Content - Fluid Width */}
-            <div className="flex-1 p-4 lg:p-8 overflow-y-auto bg-white min-w-0">
+            <div className="flex-1 p-4 lg:p-8 overflow-y-auto bg-[#150305] min-w-0">
                 <div className="w-full h-full flex flex-col max-w-5xl mx-auto">
                     {/* Header Steps */}
-                    <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-100 pb-6">
+                    <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
                         <div>
-                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-white">
                                 {step === 1 ? 'Select Date' : step === 2 ? 'Select Time Slot' : 'Finalize Booking'}
                             </h1>
-                            <p className="text-gray-500 mt-1 text-sm sm:text-base">
+                            <p className="text-gray-400 mt-1 text-sm sm:text-base">
                                 {step === 1 ? 'Choose a day for your appointment' : step === 2 ? `Available slots for ${date ? format(date, 'MMM d') : ''}` : 'Enter your details to confirm'}
                             </p>
                         </div>
                         <div className="hidden sm:flex items-center gap-2">
-                            <span className={`h-2.5 w-10 rounded-full transition-colors ${step >= 1 ? 'bg-indigo-600' : 'bg-gray-200'}`} />
-                            <span className={`h-2.5 w-10 rounded-full transition-colors ${step >= 2 ? 'bg-indigo-600' : 'bg-gray-200'}`} />
-                            <span className={`h-2.5 w-10 rounded-full transition-colors ${step >= 3 ? 'bg-indigo-600' : 'bg-gray-200'}`} />
+                            <span className={`h-2.5 w-10 rounded-full transition-colors ${step >= 1 ? 'bg-wine-gold' : 'bg-[#2d080f]'}`} />
+                            <span className={`h-2.5 w-10 rounded-full transition-colors ${step >= 2 ? 'bg-wine-gold' : 'bg-[#2d080f]'}`} />
+                            <span className={`h-2.5 w-10 rounded-full transition-colors ${step >= 3 ? 'bg-wine-gold' : 'bg-[#2d080f]'}`} />
                         </div>
                     </div>
 
                     {/* STEP 1: CALENDAR ONLY */}
                     {step === 1 && (
                         <div className="flex-1 flex flex-col items-center justify-center animate-in zoom-in-50 duration-300">
-                            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div className="bg-[#2d080f] p-6 rounded-2xl border border-wine-gold/20 shadow-sm">
                                 <style jsx global>{`
-                                    .rdp { --rdp-cell-size: 50px; --rdp-accent-color: #ff6b9d; margin: 0; }
-                                    .rdp-button:hover:not([disabled]):not(.rdp-day_selected) { background-color: #f3f4f6; }
-                                    .rdp-day_selected { font-weight: bold; color: white; background: linear-gradient(135deg, #ff6b9d 0%, #8b5cf6 100%); }
-                                    .rdp-day_selected:hover { background: linear-gradient(135deg, #ff85a6 0%, #a78bfa 100%); }
-                                    .rdp-caption_label { color: #111827; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; }
-                                    .rdp-head_cell { color: #6b7280; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding-bottom: 0.5rem; }
-                                    .rdp-day { color: #1f2937; font-weight: 500; font-size: 1.1rem; }
+                                    .rdp { --rdp-cell-size: 50px; --rdp-accent-color: #FFD700; margin: 0; }
+                                    .rdp-button:hover:not([disabled]):not(.rdp-day_selected) { background-color: #2d080f; color: #FFD700; }
+                                    .rdp-day_selected { font-weight: bold; color: #150305; background: #FFD700; }
+                                    .rdp-day_selected:hover { background: #C5A000; }
+                                    .rdp-caption_label { color: #FFD700; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem; }
+                                    .rdp-head_cell { color: #ededed; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; padding-bottom: 0.5rem; }
+                                    .rdp-day { color: #ededed; font-weight: 500; font-size: 1.1rem; }
+                                    .rdp-button[disabled] { color: #4a1c24; }
                                 `}</style>
                                 <DayPicker
                                     mode="single"
@@ -263,7 +264,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                     disabled={{ before: new Date() }}
                                 />
                             </div>
-                            <p className="mt-8 text-gray-500 text-sm">Select a date to view available time slots</p>
+                            <p className="mt-8 text-gray-400 text-sm">Select a date to view available time slots</p>
                         </div>
                     )}
 
@@ -273,15 +274,15 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                             <div className="flex flex-wrap items-center justify-between mb-8 gap-4">
                                 <button
                                     onClick={() => setStep(1)}
-                                    className="text-sm font-medium text-gray-600 hover:text-romantic-pink flex items-center bg-white border border-gray-300 px-4 py-2 rounded-lg transition-colors shadow-sm hover:shadow"
+                                    className="text-sm font-medium text-gray-300 hover:text-wine-gold flex items-center bg-[#2d080f] border border-wine-gold/20 px-4 py-2 rounded-lg transition-colors shadow-sm hover:shadow"
                                 >
                                     <ChevronLeft className="w-4 h-4 mr-1" /> Back to Calendar
                                 </button>
 
                                 {/* Cinema Legend */}
-                                <div className="flex items-center gap-3 text-xs font-medium text-gray-600 bg-white p-2 rounded-lg border border-gray-200 shadow-sm">
+                                <div className="flex items-center gap-3 text-xs font-medium text-gray-300 bg-[#2d080f] p-2 rounded-lg border border-wine-gold/20 shadow-sm">
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-3 h-3 rounded-sm border border-gray-300 bg-white"></div>
+                                        <div className="w-3 h-3 rounded-sm border border-gray-600 bg-[#150305]"></div>
                                         <span>Available</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
@@ -289,7 +290,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                         <span>Booked</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-3 h-3 rounded-sm bg-romantic-pink border border-romantic-pink"></div>
+                                        <div className="w-3 h-3 rounded-sm bg-wine-gold border border-wine-gold"></div>
                                         <span>Selected</span>
                                     </div>
                                 </div>
@@ -297,7 +298,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
 
                             {isLoadingSlots ? (
                                 <div className="flex flex-col items-center justify-center py-20">
-                                    <Loader2 className="w-12 h-12 animate-spin text-romantic-pink mb-4" />
+                                    <Loader2 className="w-12 h-12 animate-spin text-wine-gold mb-4" />
                                     <p className="text-gray-500">Loading availability...</p>
                                 </div>
                             ) : availableSlots.length > 0 ? (
@@ -311,27 +312,27 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                                 relative py-4 px-2 rounded-lg text-sm font-bold transition-all duration-200 border-2
                                                 flex flex-col items-center justify-center gap-1
                                                 ${isBooked
-                                                    ? 'bg-red-600 border-red-700 text-white cursor-not-allowed shadow-inner'
-                                                    : 'bg-white border-gray-200 text-gray-700 hover:border-romantic-pink hover:text-romantic-pink hover:shadow-md hover:-translate-y-1'
+                                                    ? 'bg-red-900/50 border-red-900/50 text-red-200 cursor-not-allowed shadow-inner'
+                                                    : 'bg-[#2d080f] border-wine-gold/20 text-gray-200 hover:border-wine-gold hover:text-wine-gold hover:shadow-md hover:-translate-y-1'
                                                 }
                                                 ${!isBooked && 'active:scale-95'}
-                                                ${selectedSlot === time ? '!border-romantic-pink !bg-romantic-pink/10 !text-romantic-pink ring-4 ring-romantic-pink/20 z-10' : ''}
+                                                ${selectedSlot === time ? '!border-wine-gold !bg-wine-gold/10 !text-wine-gold ring-4 ring-wine-gold/20 z-10' : ''}
                                             `}
                                         >
                                             <span className="text-base tracking-tight">{time}</span>
                                             {isBooked ? (
                                                 <span className="text-[10px] uppercase font-black text-red-100 tracking-wider">SOLD</span>
                                             ) : (
-                                                <span className={`text-[10px] font-medium ${selectedSlot === time ? 'text-romantic-pink' : 'text-green-500'}`}>OPEN</span>
+                                                <span className={`text-[10px] font-medium ${selectedSlot === time ? 'text-wine-gold' : 'text-green-500'}`}>OPEN</span>
                                             )}
                                         </button>
                                     ))}
                                 </div>
                             ) : (
-                                <div className="text-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
-                                    <CalendarIcon className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                                    <h3 className="text-lg font-medium text-gray-900">No slots available</h3>
-                                    <p className="text-gray-500 mt-1">Please try selecting a different date.</p>
+                                <div className="text-center py-20 bg-[#2d080f] rounded-2xl border-2 border-dashed border-wine-gold/20">
+                                    <CalendarIcon className="w-12 h-12 text-wine-gold/50 mx-auto mb-4" />
+                                    <h3 className="text-lg font-medium text-white">No slots available</h3>
+                                    <p className="text-gray-400 mt-1">Please try selecting a different date.</p>
                                 </div>
                             )}
                         </div>
@@ -342,37 +343,37 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                         <div className="max-w-2xl mx-auto w-full animate-in zoom-in-50 duration-300">
                             <button
                                 onClick={() => setStep(2)}
-                                className="mb-8 text-sm font-medium text-gray-500 hover:text-gray-900 flex items-center transition-colors"
+                                className="mb-8 text-sm font-medium text-gray-400 hover:text-white flex items-center transition-colors"
                             >
                                 <ChevronLeft className="w-4 h-4 mr-1" /> Back to Slots
                             </button>
 
                             <div className="text-center mb-8">
-                                <h3 className="text-2xl font-bold text-gray-900">Finalize Booking</h3>
-                                <p className="mt-2 text-gray-500">Please enter your details to confirm the appointment.</p>
+                                <h3 className="text-2xl font-bold text-white">Finalize Booking</h3>
+                                <p className="mt-2 text-gray-400">Please enter your details to confirm the appointment.</p>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="space-y-6 bg-white p-1">
+                            <form onSubmit={handleSubmit} className="space-y-6 bg-[#150305] p-1">
                                 <div className="grid grid-cols-1 gap-6">
                                     <div>
-                                        <label htmlFor="customerName" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                        <label htmlFor="customerName" className="block text-sm font-medium text-gray-300 mb-1">Full Name</label>
                                         <input
                                             type="text"
                                             name="customerName"
                                             id="customerName"
                                             required
-                                            className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50 focus:bg-white transition-colors text-gray-900 placeholder-gray-500"
+                                            className="block w-full rounded-lg border-wine-gold/30 shadow-sm focus:border-wine-gold focus:ring-wine-gold sm:text-sm py-3 px-4 bg-[#2d080f] focus:bg-[#20050a] transition-colors text-white placeholder-gray-500"
                                             placeholder="John Doe"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="customerEmail" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                        <label htmlFor="customerEmail" className="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
                                         <input
                                             type="email"
                                             name="customerEmail"
                                             id="customerEmail"
                                             required
-                                            className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50 focus:bg-white transition-colors text-gray-900 placeholder-gray-500"
+                                            className="block w-full rounded-lg border-wine-gold/30 shadow-sm focus:border-wine-gold focus:ring-wine-gold sm:text-sm py-3 px-4 bg-[#2d080f] focus:bg-[#20050a] transition-colors text-white placeholder-gray-500"
                                             placeholder="john@example.com"
                                         />
                                     </div>
@@ -380,14 +381,14 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                     {/* Dynamic Fields */}
                                     {config.fields.map((field) => (
                                         <div key={field.name}>
-                                            <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-1">{field.label}</label>
+                                            <label htmlFor={field.name} className="block text-sm font-medium text-gray-300 mb-1">{field.label}</label>
                                             {field.type === 'textarea' ? (
                                                 <textarea
                                                     name={field.name}
                                                     id={field.name}
                                                     required={field.required}
                                                     rows={3}
-                                                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50 focus:bg-white transition-colors text-gray-900 placeholder-gray-500"
+                                                    className="block w-full rounded-lg border-wine-gold/30 shadow-sm focus:border-wine-gold focus:ring-wine-gold sm:text-sm py-3 px-4 bg-[#2d080f] focus:bg-[#20050a] transition-colors text-white placeholder-gray-500"
                                                 />
                                             ) : (
                                                 <input
@@ -395,7 +396,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                                     name={field.name}
                                                     id={field.name}
                                                     required={field.required}
-                                                    className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-3 px-4 bg-gray-50 focus:bg-white transition-colors text-gray-900 placeholder-gray-500"
+                                                    className="block w-full rounded-lg border-wine-gold/30 shadow-sm focus:border-wine-gold focus:ring-wine-gold sm:text-sm py-3 px-4 bg-[#2d080f] focus:bg-[#20050a] transition-colors text-white placeholder-gray-500"
                                                 />
                                             )}
                                         </div>
@@ -403,11 +404,11 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                 </div>
 
                                 {error && (
-                                    <div className="rounded-md bg-red-50 p-4 border border-red-100">
+                                    <div className="rounded-md bg-red-900/30 p-4 border border-red-500/50">
                                         <div className="flex">
                                             <div className="ml-3">
-                                                <h3 className="text-sm font-medium text-red-800">Error</h3>
-                                                <div className="mt-2 text-sm text-red-700">
+                                                <h3 className="text-sm font-medium text-red-300">Error</h3>
+                                                <div className="mt-2 text-sm text-red-200">
                                                     <p>{error}</p>
                                                 </div>
                                             </div>
@@ -418,7 +419,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-md text-base font-medium text-white bg-romantic-gradient hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-romantic-pink transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.01]"
+                                    className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-md text-base font-medium text-wine-darker bg-wine-gold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-wine-gold transition-all disabled:opacity-70 disabled:cursor-not-allowed hover:scale-[1.01]"
                                 >
                                     {isSubmitting ? (
                                         <>

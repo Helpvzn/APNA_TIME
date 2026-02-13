@@ -28,7 +28,7 @@ export default async function BookingPage({ params }: { params: Promise<{ slug: 
 
 
     return (
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-[#150305]">
             <BookingClient org={org} config={config} availabilitySlots={availabilitySlots || []} />
         </main>
     )

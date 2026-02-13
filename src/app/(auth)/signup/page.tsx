@@ -15,9 +15,9 @@ export default function SignupPage() {
     const [state, formAction, isPending] = useActionState(signup, initialState)
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-wine-darker px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex min-h-screen items-center justify-center bg-[#150305] px-4 py-12 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8">
-                <div className="bg-wine-card p-8 rounded-2xl border border-wine-burgundy/20 shadow-xl shadow-wine-burgundy/10">
+                <div className="bg-wine-card p-8 rounded-2xl border border-wine-gold/20 shadow-xl shadow-wine-gold/10">
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">
                         Start your SaaS journey
                     </h2>
@@ -98,7 +98,7 @@ export default function SignupPage() {
                                     name="fullName"
                                     type="text"
                                     required
-                                    className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-gold/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-gold sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Full Name"
                                 />
                             </div>
@@ -110,7 +110,7 @@ export default function SignupPage() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-gold/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-gold sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Email address"
                                 />
                             </div>
@@ -122,7 +122,7 @@ export default function SignupPage() {
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-gold/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-gold sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Password"
                                 />
                             </div>
@@ -133,7 +133,7 @@ export default function SignupPage() {
                                     name="businessName"
                                     type="text"
                                     required
-                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-gold/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-gold sm:text-sm sm:leading-6 pl-3"
                                     placeholder="Business Name"
                                 />
                             </div>
@@ -143,7 +143,7 @@ export default function SignupPage() {
                                     id="businessType"
                                     name="businessType"
                                     required
-                                    className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-burgundy/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-burgundy sm:text-sm sm:leading-6 pl-3"
+                                    className="relative block w-full rounded-b-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-wine-gold/30 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-wine-gold sm:text-sm sm:leading-6 pl-3"
                                     defaultValue=""
                                 >
                                     <option value="" disabled>Select Business Type</option>
@@ -160,14 +160,14 @@ export default function SignupPage() {
                             <button
                                 type="submit"
                                 disabled={isPending}
-                                className="group relative flex w-full justify-center rounded-md bg-wine-gradient px-3 py-2 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine-burgundy disabled:opacity-70"
+                                className="group relative flex w-full justify-center rounded-md bg-wine-gradient px-3 py-2 text-sm font-semibold text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine-gold disabled:opacity-70"
                             >
                                 {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                                 Sign up
                             </button>
                         </div>
                         <div className="text-sm text-center">
-                            <Link href="/login" className="font-medium text-wine-burgundy hover:text-wine-burgundy-light">
+                            <Link href="/login" className="font-medium text-wine-gold hover:text-wine-gold-light">
                                 Already have an account? Log in
                             </Link>
                         </div>
@@ -177,5 +177,7 @@ export default function SignupPage() {
         </div>
     )
 }
+
+
 
 

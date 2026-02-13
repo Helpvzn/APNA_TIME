@@ -11,13 +11,13 @@ export default function Home() {
 
         {/* Floating hearts decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 text-wine-burgundy/20 animate-float">
+          <div className="absolute top-20 left-10 text-wine-gold/20 animate-float">
             <Heart className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" />
           </div>
-          <div className="absolute top-40 right-20 text-wine-red/20 animate-float" style={{ animationDelay: '1s' }}>
+          <div className="absolute top-40 right-20 text-wine-gold/20 animate-float" style={{ animationDelay: '1s' }}>
             <Heart className="w-6 h-6 md:w-10 md:h-10" fill="currentColor" />
           </div>
-          <div className="absolute bottom-40 left-1/4 text-wine-burgundy-light/20 animate-float" style={{ animationDelay: '2s' }}>
+          <div className="absolute bottom-40 left-1\4 text-wine-gold/20 animate-float" style={{ animationDelay: '2s' }}>
             <Heart className="w-5 h-5 md:w-8 md:h-8" fill="currentColor" />
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function Home() {
             {/* Subtitle */}
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto px-4">
               The ultimate appointment booking platform for professionals.
-              <span className="block mt-2 text-wine-pink-light">
+              <span className="block mt-2 text-wine-burgundy-light">
                 Manage your schedule effortlessly.
               </span>
             </p>
@@ -49,7 +49,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-4">
               <Link
                 href="/login"
-                className="group w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-wine-gradient text-white font-bold text-base sm:text-lg rounded-xl hover:scale-105 transition-all shadow-lg shadow-wine-pink/25 hover:shadow-wine-pink/40 flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-wine-gold text-wine-darker font-bold text-base sm:text-lg rounded-xl hover:scale-105 transition-all shadow-lg shadow-wine-burgundy/25 hover:shadow-wine-burgundy/40 flex items-center justify-center gap-2"
               >
                 Login to Dashboard
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -57,7 +57,7 @@ export default function Home() {
 
               <Link
                 href="/signup"
-                className="group w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-wine-card text-white font-bold text-base sm:text-lg border-2 border-wine-pink/30 rounded-xl hover:border-wine-pink hover:bg-wine-dark transition-all flex items-center justify-center gap-2"
+                className="group w-full sm:w-auto px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-wine-card text-white font-bold text-base sm:text-lg border-2 border-wine-burgundy/30 rounded-xl hover:border-wine-burgundy hover:bg-wine-dark transition-all flex items-center justify-center gap-2"
               >
                 Create Account
                 <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
@@ -78,9 +78,9 @@ export default function Home() {
           {/* Feature Cards - Stacked on mobile, 2 cols on tablet, 3 cols on desktop */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {/* Doctor Card */}
-            <div className="group p-6 sm:p-8 bg-wine-card/50 backdrop-blur-sm rounded-2xl border border-wine-pink/20 hover:border-wine-pink/50 transition-all hover:scale-105 hover:shadow-xl hover:shadow-wine-pink/10">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-wine-pink/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-wine-pink/30 transition-colors">
-                <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-wine-pink" />
+            <div className="group p-6 sm:p-8 bg-wine-card/50 backdrop-blur-sm rounded-2xl border border-wine-burgundy/20 hover:border-wine-burgundy/50 transition-all hover:scale-105 hover:shadow-xl hover:shadow-wine-burgundy/10">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-wine-burgundy/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-wine-burgundy/30 transition-colors">
+                <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-wine-burgundy" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">For Doctors</h3>
               <p className="text-sm sm:text-base text-gray-400">Patient scheduling & clinic management made simple.</p>
@@ -96,9 +96,9 @@ export default function Home() {
             </div>
 
             {/* Service Provider Card */}
-            <div className="group p-6 sm:p-8 bg-wine-card/50 backdrop-blur-sm rounded-2xl border border-wine-pink-light/20 hover:border-wine-pink-light/50 transition-all hover:scale-105 hover:shadow-xl hover:shadow-wine-pink-light/10 sm:col-span-2 lg:col-span-1">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-wine-pink-light/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-wine-pink-light/30 transition-colors">
-                <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-wine-pink-light" />
+            <div className="group p-6 sm:p-8 bg-wine-card/50 backdrop-blur-sm rounded-2xl border border-wine-burgundy-light/20 hover:border-wine-burgundy-light/50 transition-all hover:scale-105 hover:shadow-xl hover:shadow-wine-burgundy-light/10 sm:col-span-2 lg:col-span-1">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-wine-burgundy-light/20 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-wine-burgundy-light/30 transition-colors">
+                <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-wine-burgundy-light" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">For Service Providers</h3>
               <p className="text-sm sm:text-base text-gray-400">Service bookings & resource management at your fingertips.</p>
@@ -108,11 +108,11 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-wine-darker border-t border-wine-pink/10 py-6 sm:py-8 px-4">
+      <footer className="bg-wine-darker border-t border-wine-burgundy/10 py-6 sm:py-8 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-500 text-sm sm:text-base">
             © 2026 ApnaTime SaaS. Made with{' '}
-            <Heart className="inline w-4 h-4 text-wine-pink fill-wine-pink animate-heartbeat" />{' '}
+            <Heart className="inline w-4 h-4 text-wine-burgundy fill-wine-burgundy animate-heartbeat" />{' '}
             for professionals.
           </p>
         </div>
@@ -120,4 +120,5 @@ export default function Home() {
     </main>
   )
 }
+
 
