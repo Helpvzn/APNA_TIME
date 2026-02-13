@@ -8,26 +8,37 @@ export default async function AdminDashboard() {
 
     if (!user) redirect('/login')
 
-    const { data: profile } = await supabase
+    // Fetch Profile
+    const { data: profile, error: profileError } = await supabase
         .from('profiles')
-        .select('*, organizations(*)')
+        .select('*')
         .eq('id', user.id)
         .single()
 
-    if (!profile) return <div>Profile not found</div>
+    if (profileError || !profile) {
+        console.error('Admin Load Error (Profile):', profileError)
+        return <div className="p-8 text-black">Profile not found. Please sign up again. (Error: {profileError?.message})</div>
+    }
 
     if (profile.role === 'super_admin') {
         redirect('/admin/super')
     }
 
-    // Handle case where organizations might be an array or single object depending on query
-    const organization = Array.isArray(profile.organizations) ? profile.organizations[0] : profile.organizations;
+    // Fetch Organization directly (more robust than join)
+    const { data: organization, error: orgError } = await supabase
+        .from('organizations')
+        .select('*')
+        .eq('user_id', user.id)
+        .single() // Expecting one org per user
+
+    if (orgError) console.error('Admin Load Error (Org):', orgError)
 
     if (!organization) {
         return (
             <div className="text-center py-12">
                 <h2 className="text-2xl font-semibold text-gray-900">No Organization Found</h2>
                 <p className="mt-2 text-gray-600">Please contact support or sign up again.</p>
+                <div className="mt-4 text-xs text-gray-400">User ID: {user.id}</div>
             </div>
         )
     }
@@ -41,9 +52,6 @@ export default async function AdminDashboard() {
             <div className="text-center py-12 flex flex-col items-center justify-center h-[50vh]">
                 <h2 className="text-3xl font-bold text-red-600 mb-4">Access Denied</h2>
                 <p className="text-lg text-gray-600">Your organization request has been rejected by the administrator.</p>
-                <div className="mt-8 p-4 bg-red-50 border border-red-200 rounded-lg max-w-md">
-                    <p className="text-sm text-red-800">Please contact support for more information.</p>
-                </div>
             </div>
         )
     }
