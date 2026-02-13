@@ -73,5 +73,5 @@ export async function GET(request: Request) {
     }
 
     // No code provided
-    return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+    return NextResponse.redirect(new URL('/login?error=auth_code_error', request.url))
 }
