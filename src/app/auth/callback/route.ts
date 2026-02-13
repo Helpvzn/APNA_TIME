@@ -19,7 +19,7 @@ export async function GET(request: Request) {
 
         // Check if user entry exists in our users table
         const { data: existingUser } = await supabase
-            .from('users')
+            .from('profiles')
             .select('*')
             .eq('id', user.id)
             .single()
@@ -28,7 +28,7 @@ export async function GET(request: Request) {
         if (!existingUser) {
             // Create user entry
             await supabase
-                .from('users')
+                .from('profiles')
                 .insert({
                     id: user.id,
                     email: user.email!,
