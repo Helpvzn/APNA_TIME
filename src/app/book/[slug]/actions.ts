@@ -138,25 +138,27 @@ export async function deleteAppointment(appointmentId: string, organizationId: s
     const supabase = await createClient()
 
     // Verify user is allowed to delete (must be org admin)
+    // Verify user is allowed to delete (must be org admin)
     const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return { error: 'Unauthorized' }
+    if (!user) return { error: 'Unauthorized: No user logged in' }
 
     // Check if user belongs to this org
-    const { data: profile } = await supabase.from('profiles').select('organization_id').eq('id', user.id).single()
+    // For now, we trust the organizationId lookup via RLS or owner check
 
-    // Allow if user is the admin of this org OR super_admin (not handling super admin logic here for simplicity, assuming org owner)
-    // Actually, checking if profile.organization_id matches or if they are owner of that org.
-    // For now, simpler: just delete checking match.
-
-    const { error } = await supabase
+    // Attempt delete
+    const { error, count } = await supabase
         .from('appointments')
-        .delete()
+        .delete({ count: 'exact' })
         .eq('id', appointmentId)
         .eq('organization_id', organizationId)
 
     if (error) {
-        console.error('Error deleting appointment:', error)
-        return { error: error.message }
+        console.error('Delete DB Error:', error)
+        return { error: `Delete Failed: ${error.message}` }
+    }
+
+    if (count === 0) {
+        return { error: 'Appointment not found or you do not have permission.' }
     }
 
     return { success: true }
