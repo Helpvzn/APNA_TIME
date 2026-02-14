@@ -11,12 +11,22 @@ export async function GET(request: Request) {
 
     const supabase = await createClient()
 
-    // 1. Get Org
-    const { data: org } = await supabase
-        .from('organizations')
-        .select('id, email, google_connected_email, google_refresh_token')
-        .eq('slug', slug)
+    // 1. Get Org using Security Definer RPC
+    const { data: orgData, error } = await supabase
+        .rpc('get_debug_org_data', { p_slug: slug })
         .single()
+
+    // Explicit cast for TS
+    const org = orgData as {
+        id: string
+        email: string
+        google_connected_email: string
+        google_refresh_token: string
+    } | null
+
+    if (error) {
+        return NextResponse.json({ error: 'RPC Error', details: error })
+    }
 
     if (!org) return NextResponse.json({ error: 'Org not found' })
 
