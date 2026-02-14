@@ -2,6 +2,7 @@
 
 import { createClient } from '@/utils/supabase/server'
 import { startOfDay, endOfDay, subDays, addDays } from 'date-fns'
+import { getGoogleBusyIntervals } from '@/lib/google-calendar'
 
 export async function getAppointmentsForDate(organizationId: string, date: Date) {
     const supabase = await createClient()
@@ -11,25 +12,48 @@ export async function getAppointmentsForDate(organizationId: string, date: Date)
     const start = subDays(startOfDay(date), 1).toISOString()
     const end = addDays(endOfDay(date), 1).toISOString()
 
-    // Use RPC to securely fetch busy slots without exposing user data (Bypassing RLS via Security Definier)
-    const { data: rawAppointments, error } = await supabase.rpc('get_busy_intervals', {
+    // 1. Fetch Organization's Google Token
+    const { data: org } = await supabase
+        .from('organizations')
+        .select('google_refresh_token')
+        .eq('id', organizationId)
+        .single()
+
+    // 2. Fetch DB Appointments (Secure RPC)
+    const dbPromise = supabase.rpc('get_busy_intervals', {
         p_organization_id: organizationId,
         p_start_time: start,
         p_end_time: end
     })
+
+    // 3. Fetch Google Calendar Busy Slots (if connected)
+    const googlePromise = org?.google_refresh_token
+        ? getGoogleBusyIntervals(org.google_refresh_token, start, end)
+        : Promise.resolve([])
+
+    // Execute in parallel
+    const [dbResult, googleBusy] = await Promise.all([dbPromise, googlePromise])
+
+    const { data: rawAppointments, error } = dbResult
 
     if (error) {
         console.error('Error fetching busy intervals:', error)
         return []
     }
 
-    // Cast the response to a known type to fix "implicit any" error during build
-    const appointments = rawAppointments as { start_time: string, end_time: string }[] | null
+    // Cast the response to a known type
+    const dbAppointments = (rawAppointments as { start_time: string, end_time: string }[] | null) || []
 
-    // Standardize dates to ISO strings for consistent browser parsing
-    return (appointments || []).map((a) => ({
-        ...a,
+    // 4. Merge and Normalize
+    const allBusy = [
+        ...dbAppointments,
+        ...googleBusy
+    ]
+
+    // Standardize dates
+    return allBusy.map((a) => ({
         start_time: new Date(a.start_time).toISOString(),
         end_time: new Date(a.end_time).toISOString()
     }))
 }
+
