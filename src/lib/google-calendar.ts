@@ -1,8 +1,18 @@
 import { google } from 'googleapis'
 
+export const oauth2Client = new google.auth.OAuth2(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET
+)
+
 export async function getGoogleBusyIntervals(refreshToken: string, start: string, end: string) {
     try {
-        const auth = new google.auth.OAuth2(
+        const auth = oauth2Client
+        // We need to create a new instance or clone it to avoid side effects if reused concurrently with different tokens?
+        // Actually simpler to just use the new instance pattern inside the function as before, but actions.ts needs the client.
+        // Let's keep the function independent but export the client for manual use.
+
+        const client = new google.auth.OAuth2(
             process.env.GOOGLE_CLIENT_ID,
             process.env.GOOGLE_CLIENT_SECRET
         )
