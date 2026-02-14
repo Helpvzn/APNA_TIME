@@ -1,4 +1,4 @@
-export type BusinessType = 'doctor' | 'hr' | 'lawyer' | 'consultant' | 'service';
+export type BusinessType = 'doctor' | 'hr' | 'lawyer' | 'consultant' | 'service' | 'barber';
 
 export interface CategoryConfig {
     label: string;
