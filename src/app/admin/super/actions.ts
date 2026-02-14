@@ -14,6 +14,13 @@ export async function approveOrganization(orgId: string) {
     if (profile?.role !== 'super_admin') return
 
     await supabase.from('organizations').update({ approval_status: 'approved' }).eq('id', orgId)
+
+    // Generate Slots for the new Organization
+    const { error: slotError } = await supabase.rpc('create_slots_for_org', { p_org_id: orgId })
+    if (slotError) {
+        console.error('Failed to create slots:', slotError)
+    }
+
     revalidatePath('/admin/super')
 }
 

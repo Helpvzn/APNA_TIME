@@ -34,13 +34,7 @@ export default async function AdminDashboard() {
     if (orgError) console.error('Admin Load Error (Org):', orgError)
 
     if (!organization) {
-        return (
-            <div className="text-center py-12">
-                <h2 className="text-2xl font-semibold text-gray-900">No Organization Found</h2>
-                <p className="mt-2 text-gray-600">Please contact support or sign up again.</p>
-                <div className="mt-4 text-xs text-gray-400">User ID: {user.id}</div>
-            </div>
-        )
+        redirect('/admin/onboarding')
     }
 
     if (organization.approval_status === 'pending') {
