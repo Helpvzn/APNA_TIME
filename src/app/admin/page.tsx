@@ -34,7 +34,7 @@ export default async function AdminDashboard() {
     if (orgError) console.error('Admin Load Error (Org):', orgError)
 
     if (!organization) {
-        redirect('/admin/onboarding')
+        redirect('/onboarding')
     }
 
     if (organization.approval_status === 'pending') {
