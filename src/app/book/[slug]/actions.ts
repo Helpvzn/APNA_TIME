@@ -145,7 +145,40 @@ export async function deleteAppointment(appointmentId: string, organizationId: s
     // Check if user belongs to this org
     // For now, we trust the organizationId lookup via RLS or owner check
 
-    // Attempt delete
+    // 1. Fetch appointment details for GCal sync
+    const { data: appointment } = await supabase
+        .from('appointments')
+        .select('google_event_id')
+        .eq('id', appointmentId)
+        .eq('organization_id', organizationId)
+        .single()
+
+    // 2. Delete from Google Calendar (Best Effort)
+    if (appointment?.google_event_id) {
+        // Fetch org token
+        const { data: org } = await supabase
+            .from('organizations')
+            .select('google_refresh_token')
+            .eq('id', organizationId)
+            .single()
+
+        if (org?.google_refresh_token) {
+            try {
+                oauth2Client.setCredentials({ refresh_token: org.google_refresh_token })
+                const calendar = google.calendar({ version: 'v3', auth: oauth2Client })
+                await calendar.events.delete({
+                    calendarId: 'primary',
+                    eventId: appointment.google_event_id
+                })
+                console.log('Deleted GCal Event:', appointment.google_event_id)
+            } catch (gError) {
+                console.error('Failed to delete GCal event:', gError)
+                // Continue to delete from DB even if GCal fails
+            }
+        }
+    }
+
+    // 3. Delete from DB
     const { error, count } = await supabase
         .from('appointments')
         .delete({ count: 'exact' })
