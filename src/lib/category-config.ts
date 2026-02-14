@@ -20,6 +20,14 @@ export const CATEGORY_CONFIG: Record<BusinessType, CategoryConfig> = {
             { name: 'insurance_provider', label: 'Insurance Provider', type: 'text' }
         ]
     },
+    barber: {
+        label: 'Haircuts',
+        slotDuration: 30,
+        fields: [
+            { name: 'style_preference', label: 'Style Preference', type: 'text' },
+            { name: 'hair_type', label: 'Hair Type (Short/Long/Curly)', type: 'text' }
+        ]
+    },
     hr: {
         label: 'Interviews',
         slotDuration: 45,
