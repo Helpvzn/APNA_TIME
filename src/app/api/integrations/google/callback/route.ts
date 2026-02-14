@@ -1,35 +1,56 @@
 import { NextResponse } from 'next/server'
-import { oauth2Client } from '@/lib/google-calendar'
+import { google } from 'googleapis'
 import { createClient } from '@/utils/supabase/server'
 
 export async function GET(request: Request) {
-    const { searchParams, origin } = new URL(request.url)
-    const code = searchParams.get('code')
+    const url = new URL(request.url)
+    const code = url.searchParams.get('code')
+    const error = url.searchParams.get('error')
 
-    if (!code) {
-        return NextResponse.redirect(`${origin}/admin/integrations?error=NoCode`)
+    if (error || !code) {
+        return NextResponse.redirect(`${url.origin}/admin/integrations?error=access_denied`)
+    }
+
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+        return NextResponse.redirect(`${url.origin}/login`)
     }
 
     try {
+        const oauth2Client = new google.auth.OAuth2(
+            process.env.GOOGLE_CLIENT_ID,
+            process.env.GOOGLE_CLIENT_SECRET,
+            `${url.origin}/api/integrations/google/callback`
+        )
+
+        // Exchange code for tokens
         const { tokens } = await oauth2Client.getToken(code)
+        oauth2Client.setCredentials(tokens)
 
-        if (!tokens.refresh_token) {
-            // If user already authorized, we might not get refresh token unless prompt='consent'
-            console.warn('No refresh token returned')
-        }
+        // Get User Email to display in UI
+        const oauth2 = google.oauth2({ version: 'v2', auth: oauth2Client })
+        const { data: userInfo } = await oauth2.userinfo.get()
 
-        const supabase = await createClient()
-        const { data: { user } } = await supabase.auth.getUser()
+        // SAVE TO DB
+        // Note: For production, encrypt 'refresh_token'. MVP stores plain text.
+        // We only care about refresh_token. Access token expires in 1h.
+        const { error: updateError } = await supabase
+            .from('organizations')
+            .update({
+                google_refresh_token: tokens.refresh_token, // Can be null if prompt!='consent'
+                google_connected_email: userInfo.email,
+                google_updated_at: new Date().toISOString()
+            })
+            .eq('user_id', user.id)
 
-        if (user && tokens.refresh_token) {
-            await supabase.from('profiles').update({
-                google_refresh_token: tokens.refresh_token
-            }).eq('id', user.id)
-        }
+        if (updateError) throw updateError
 
-        return NextResponse.redirect(`${origin}/admin/integrations?success=true`)
-    } catch (error) {
-        console.error('Error exchanging code', error)
-        return NextResponse.redirect(`${origin}/admin/integrations?error=ExchangeFailed`)
+        return NextResponse.redirect(`${url.origin}/admin/integrations?success=true`)
+
+    } catch (err) {
+        console.error('OAuth Error:', err)
+        return NextResponse.redirect(`${url.origin}/admin/integrations?error=token_exchange_failed`)
     }
 }
