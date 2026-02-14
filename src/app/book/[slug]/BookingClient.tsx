@@ -51,7 +51,8 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                 console.log('🔍 Day of week (JS):', dayOfWeek) // 0=Sunday, 3=Wednesday
                 console.log('🔍 All availability slots:', availabilitySlots)
 
-                const daySlots = availabilitySlots.filter(s => s.day_of_week === dayOfWeek)
+                // FORCE NUMBER CONVERSION
+                const daySlots = availabilitySlots.filter(s => Number(s.day_of_week) === dayOfWeek)
                 console.log('🔍 Filtered day slots:', daySlots)
 
                 if (daySlots.length === 0) {
@@ -431,6 +432,16 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                             </form>
                         </div>
                     )}
+                </div>
+
+                {/* VISUAL DEBUGGER */}
+                <div className="mt-8 p-4 bg-black/50 text-xs font-mono text-green-400 rounded-lg border border-green-900/50">
+                    <p>DEBUG INFO:</p>
+                    <p>Date: {date?.toString()}</p>
+                    <p>Day Index: {date?.getDay()}</p>
+                    <p>Raw Slots: {availabilitySlots.length}</p>
+                    <p>Filtered Slots: {availableSlots.length}</p>
+                    <p>Config Duration: {config.slotDuration}</p>
                 </div>
             </div>
         </div>

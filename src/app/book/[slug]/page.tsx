@@ -26,6 +26,12 @@ export default async function BookingPage({ params }: { params: Promise<{ slug: 
         .eq('organization_id', org.id)
         .eq('is_available', true)
 
+    if (slotsError) {
+        console.error('SERVER LOG: Error fetching slots:', slotsError)
+    } else {
+        console.log(`SERVER LOG: Fetched ${availabilitySlots?.length} slots for org ${org.slug}`, availabilitySlots)
+    }
+
 
     return (
         <main className="min-h-screen bg-[#150305]">
