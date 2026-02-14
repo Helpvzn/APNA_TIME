@@ -19,7 +19,6 @@ export async function GET(request: Request) {
     // Explicit cast for TS
     const org = orgData as {
         id: string
-        email: string
         google_connected_email: string
         google_refresh_token: string
     } | null
