@@ -433,16 +433,6 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                         </div>
                     )}
                 </div>
-
-                {/* VISUAL DEBUGGER */}
-                <div className="mt-8 p-4 bg-black/50 text-xs font-mono text-green-400 rounded-lg border border-green-900/50">
-                    <p>DEBUG INFO:</p>
-                    <p>Date: {date?.toString()}</p>
-                    <p>Day Index: {date?.getDay()}</p>
-                    <p>Raw Slots: {availabilitySlots.length}</p>
-                    <p>Filtered Slots: {availableSlots.length}</p>
-                    <p>Config Duration: {config.slotDuration}</p>
-                </div>
             </div>
         </div>
     )
