@@ -83,7 +83,7 @@ export default function BookingClient({ org, config, availabilitySlots }: Bookin
                         if (isAfter(slotEnd, end)) break;
 
                         // Check collision
-                        const isOccupied = existingAppts.some(appt => {
+                        const isOccupied = existingAppts.some((appt: { start_time: string, end_time: string }) => {
                             const slotStartMs = current.getTime()
                             const slotEndMs = slotEnd.getTime()
                             const apptStartMs = new Date(appt.start_time).getTime()
